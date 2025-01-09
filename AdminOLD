@@ -1,0 +1,35 @@
+    <!DOCTYPE html>
+<html>
+<head>
+<title>IDKMAN secure panel v2.0</title>
+<!-- Include CSS File Here -->
+<link rel="stylesheet" href="css/style.css"/>
+<!-- Include JS File Here -->
+<script src="js/login.js"></script>
+
+</form>
+
+<br>
+<br>
+there is a username and password. it is </b>very</b> secure
+
+</div>
+</div>
+</body>
+</html>
+
+<!--THE JS JAVASCRIPT PART BELOW-->
+
+<head>
+        // Disabling fields after 3 attempts.
+        if (attempt == 0) {
+            document.getElementById("username").disabled = true;
+            document.getElementById("password").disabled = true;
+            document.getElementById("submit").disabled = true;
+            return false;
+        }
+    }
+}
+</script>
+</head> 
+</html>
