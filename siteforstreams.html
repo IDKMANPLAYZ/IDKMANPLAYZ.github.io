@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LiveStreamPlayer</title>
+    <style>
+        body {
+            background: url('img.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Impact, Charcoal, sans-serif;
+        }
+        h1, h2, h3, button {
+            font-family: Impact, Charcoal, sans-serif;
+        }
+        #popupIframe, #popupChat {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 80vw;
+            height: 80vh;
+            z-index: 1000;
+            border: 5px solid #333;
+            background: #fff;
+        }
+        #closeBtn, #closeChatBtn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            z-index: 1001;
+            font-family: Impact, Charcoal, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%;
+            animation: rainbow 3s linear infinite;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        button:active {
+            transform: scale(0.97);
+        }
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            100% {background-position: 100% 50%;}
+        }
+        iframe {
+            border: 10px solid;
+            border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+        #muteBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live player</h1>
+    <h2>Live Stream</h2>
+    <h3>Pre-recorded update v1.0</h3>
+    <iframe src="https://player.livepush.io/live/emkUAknoH7tvpZlx" width="1366" height="768" allowFullScreen="1" frameBorder="0"></iframe>
+
+    <button onclick="showIframe()">Show Pre-recorded</button>
+    <button onclick="showChat()">Show Live Chat</button>
+
+    <!-- Lo-fi background music with mute/unmute -->
+    <audio id="lofiAudio" src="webweb.mp3" loop></audio>
+    <button id="muteBtn" onclick="toggleMute()">Play Music</button>
+
+    <div id="popupIframe">
+        <button id="closeBtn" onclick="hideIframe()">Close Pre-recorded</button>
+        <iframe src="https://player.livepush.io/live/emTO86lXjL8fDk-" width="100%" height="90%" allowFullScreen="1" frameBorder="0"></iframe>
+    </div>
+    <div id="popupChat">
+        <button id="closeChatBtn" onclick="hideChat()">Close Chat</button>
+        <iframe src="https://embedchat.livepush.io/?room=emkUAknoH7tvpZlx" width="100%" height="90%" allowFullScreen="1" frameBorder="0"></iframe>
+    </div>
+    <script>
+        function showIframe() {
+            document.getElementById('popupIframe').style.display = 'block';
+        }
+        function hideIframe() {
+            document.getElementById('popupIframe').style.display = 'none';
+        }
+        function showChat() {
+            document.getElementById('popupChat').style.display = 'block';
+        }
+        function hideChat() {
+            document.getElementById('popupChat').style.display = 'none';
+        }
+        // Lo-fi music play/mute/unmute
+        const audio = document.getElementById('lofiAudio');
+        const muteBtn = document.getElementById('muteBtn');
+        let isPlaying = false;
+        muteBtn.addEventListener('click', function() {
+            if (!isPlaying) {
+                audio.play();
+                audio.muted = false;
+                muteBtn.textContent = 'Mute Music';
+                isPlaying = true;
+            } else {
+                audio.muted = !audio.muted;
+                muteBtn.textContent = audio.muted ? 'Unmute Music' : 'Mute Music';
+            }
+        });
+    </script>
+</body>
+</html>
